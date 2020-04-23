@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import "bootstrap/dist/css/bootstrap.min.css";
 import * as serviceWorker from "./serviceWorker";
-import { Provider } from "mobx-react";
-import MainStore from "./Store";
+// import { Provider } from "mobx-react";
+// import MainStore from "./Store";
 
 ReactDOM.render(
   <React.StrictMode>

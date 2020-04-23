@@ -1,24 +1,18 @@
 import React from "react";
-import { Link, NavLink, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 
-const Navbar = () => {
+const NavbarComponent = () => {
   return (
-    <nav className="nav-wrapper red darken-3">
-      <div className="container">
-        <a href="!#" className="brand-logo">
-          Movie Search React App
-        </a>
-        <ul className="right">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <NavLink to="/favorites">Favorites</NavLink>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <Navbar bg="dark" variant="dark">
+      <Navbar.Brand>Movie Search</Navbar.Brand>
+      <Nav className="mr-auto">
+        <Nav.Link href="/">Home</Nav.Link>
+        <Nav.Link href="/favorites">Favorites</Nav.Link>
+      </Nav>
+    </Navbar>
   );
 };
 
-export default withRouter(Navbar);
+export default withRouter(NavbarComponent);

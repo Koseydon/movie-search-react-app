@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
-// import Favorites from "./components/Favorites";
+import Favorites from "./components/Favorites";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <div className="App">
         <Navbar />
         <Route exact path="/" component={Home} />
-        {/* <Route exact path="/favorites" component={Favorites} /> */}
+        <Route exact path="/favorites" component={Favorites} />
       </div>
     </BrowserRouter>
   );
