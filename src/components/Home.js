@@ -4,13 +4,14 @@ import RenderMovies from "./RenderMovies";
 import Form from "react-bootstrap/Form";
 import { Col, Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import "./Home.css";
 
 const limit = 10;
 const apiAddress = `http://omdbapi.com/?apikey=3b4bd31e&s=`;
 const imdbApi = `http://omdbapi.com/?apikey=3b4bd31e&i=`;
 
 const Home = () => {
-  const [searchKey, setSearchKey] = useState("alien");
+  const [searchKey, setSearchKey] = useState("");
   const [yearKey, setYearKey] = useState("");
   const [typeKey, setTypeKey] = useState("");
   const [movies, setMovies] = useState([]);
@@ -44,7 +45,7 @@ const Home = () => {
           } else {
             setMovies("");
             setTotalResults(0);
-            setError("aradığın film henüz çekilmedi...");
+            setError("There is no movie in that name has shot yet!");
           }
         })
         .catch((e) => console.log(e))
@@ -52,7 +53,7 @@ const Home = () => {
           setLoading(false);
         });
     } else {
-      setError("arama yapmak için en az 1 karakter girilmeli...");
+      setError("You should enter at least 1 character to search...");
     }
   };
 
@@ -85,10 +86,15 @@ const Home = () => {
 
   return (
     <Container style={{ marginTop: "50px" }}>
-      <Form>
+      <Form className="form">
         <Form.Row>
-          <Form.Group as={Col} controlId="formGridEmail">
+          <Form.Group as={Col} md={12} lg={3}>
             <Form.Control
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  fetchMovies();
+                }
+              }}
               value={searchKey}
               onChange={(e) => setSearchKey(e.target.value)}
               type="text"
@@ -96,8 +102,13 @@ const Home = () => {
             />
           </Form.Group>
 
-          <Form.Group as={Col} controlId="formGridPassword">
+          <Form.Group as={Col} md={12} lg={3}>
             <Form.Control
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  fetchMovies();
+                }
+              }}
               value={yearKey}
               onChange={(e) => setYearKey(e.target.value)}
               type="number"
@@ -105,8 +116,13 @@ const Home = () => {
             />
           </Form.Group>
 
-          <Form.Group as={Col} controlId="formGridState">
+          <Form.Group as={Col} md={12} lg={3}>
             <Form.Control
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  fetchMovies();
+                }
+              }}
               onChange={(e) => setTypeKey(e.target.value)}
               as="select"
             >
@@ -116,21 +132,30 @@ const Home = () => {
               <option value="episode">Episode</option>
             </Form.Control>
           </Form.Group>
-          <Button
-            size="sm"
-            onClick={() => fetchMovies()}
-            variant="primary"
-            type="button"
-            style={{ width: "64px", height: "38px" }}
-          >
-            Submit
-          </Button>
+          <div className="col-md-12 col-lg-1">
+            <Button
+              className="btn-block"
+              md={12}
+              size="sm"
+              onClick={() => fetchMovies()}
+              variant="primary"
+              type="button"
+              style={{
+                height: "38px",
+                btnBlock: true,
+                backgroundColor: "#343a40",
+                border: "none",
+              }}
+            >
+              Search
+            </Button>
+          </div>
         </Form.Row>
       </Form>
 
       {!!error && <div>{error}</div>}
 
-      {loading && <div>arama başlatıldı...</div>}
+      {loading && <div>Looking for Movies...</div>}
 
       {!!movies.length && (
         <RenderMovies movies={movies} imdbInfos={imdbInfos} />

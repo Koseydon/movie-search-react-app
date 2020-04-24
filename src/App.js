@@ -10,7 +10,7 @@ function App() {
       <div className="App">
         <Navbar />
         <Route exact path="/" component={Home} />
-        <Route exact path="/favorites" component={Favorites} />
+        <Route path="/favorites" component={Favorites} />
       </div>
     </BrowserRouter>
   );

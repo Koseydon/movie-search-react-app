@@ -20,7 +20,7 @@ const Favorites = () => {
       });
       setFavoriteMovies(fetchedMovies);
     } else {
-      setNoFavorites("Henüz favorilere bişi eklemedin");
+      setNoFavorites("There is no favorites of you yet!");
     }
   };
 
